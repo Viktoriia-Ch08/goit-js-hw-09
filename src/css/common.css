@@ -13,7 +13,81 @@ body {
   color: #212121;
   line-height: 1.5;
 }
+/* color-switcher styles start */
+ .buttons {
+   display: flex;
+   width: 380px;
+   gap: 10px;
+   --b: 5px;
+   /* the border thickness */
+   --h: 1.8em;
+   /* the height */
+ }
 
+ .buttons button {
+   --_c: #88C100;
+   flex: calc(1.25 + var(--_s, 0));
+   min-width: 0;
+   font-size: 40px;
+   font-weight: bold;
+   height: var(--h);
+   cursor: pointer;
+   color: var(--_c);
+   border: var(--b) solid var(--_c);
+   background:#c1e371;
+     
+   clip-path: polygon(0 0, 100% 0, calc(100% - 0.577*var(--h)) 100%, 0 100%);
+   padding: 0 calc(0.288*var(--h)) 0 0;
+   margin: 0 calc(-0.288*var(--h)) 0 0;
+   box-sizing: border-box;
+   transition: flex .4s;
+ }
+
+ .buttons button+button {
+   --_c: #FF003C;
+   flex: calc(.75 + var(--_s, 0));
+   background:#ff8da7;
+     
+   clip-path: polygon(calc(0.577*var(--h)) 0, 100% 0, 100% 100%, 0 100%);
+   margin: 0 0 0 calc(-0.288*var(--h));
+   padding: 0 0 0 calc(0.288*var(--h));
+ }
+
+ .buttons button:focus-visible {
+   outline-offset: calc(-2*var(--b));
+   outline: calc(var(--b)/2) solid #000;
+   background: none;
+   clip-path: none;
+   margin: 0;
+   padding: 0;
+ }
+
+ .buttons button:focus-visible+button {
+   background: none;
+   clip-path: none;
+   margin: 0;
+   padding: 0;
+ }
+
+ .buttons button:has(+ button:focus-visible) {
+   background: none;
+   clip-path: none;
+   margin: 0;
+   padding: 0;
+ }
+
+ button:hover,
+ button:active:not(:focus-visible) {
+   --_s: .75;
+ }
+
+ button:active {
+   box-shadow: inset 0 0 0 100vmax var(--_c);
+   color: #fff;
+ }
+/*color-switcher styles start */
+
+/* timer styles start*/
 #datetime-picker {
   padding-left: 10px;
 width: 250px;
@@ -75,7 +149,7 @@ font-family: 'Covered By Your Grace',
 
 }
 
-
+/* timer styles end */
 img {
   display: block;
   max-width: 100%;
