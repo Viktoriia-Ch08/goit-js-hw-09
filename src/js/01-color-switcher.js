@@ -11,10 +11,11 @@ refs.startBtn.addEventListener('click', onClick);
 refs.stopBtn.addEventListener('click', onStop);
 
 function onClick() {
+  refs.startBtn.disabled = true;
+  refs.stopBtn.disabled = false;
+
   clickOnBtn = setInterval(() => {
     refs.bodyEl.style.backgroundColor = getRandomHexColor();
-    refs.startBtn.disabled = true;
-    refs.stopBtn.disabled = false;
   }, 1000);
 }
 
