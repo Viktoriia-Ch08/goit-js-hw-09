@@ -5,6 +5,8 @@ const refs = {
 };
 let clickOnBtn = null;
 
+refs.stopBtn.disabled = true;
+
 refs.startBtn.addEventListener('click', onClick);
 refs.stopBtn.addEventListener('click', onStop);
 
