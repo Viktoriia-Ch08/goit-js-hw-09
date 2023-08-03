@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+
 * {
   box-sizing: border-box;
 }
@@ -11,6 +13,68 @@ body {
   color: #212121;
   line-height: 1.5;
 }
+
+#datetime-picker {
+  padding-left: 10px;
+width: 250px;
+height: 40px;
+
+font-family: 'Covered By Your Grace',
+  cursive;
+  font-size: 24px;
+  border-radius: 50px;
+}
+
+.btn-start {
+  width: 50px;
+  height: 50px;
+
+  font-family: 'Covered By Your Grace',
+    cursive;
+
+  border-radius: 50px;
+
+}
+
+.field {
+  display: inline-block;
+  line-height: 1;
+  padding: 20px;
+  font-size: 40px;
+}
+
+[data-days] {
+  font-size: 200px;
+  color: #db4844;
+}
+
+[data-hours] {
+  font-size: 150px;
+  color: #f07c22;
+}
+
+[data-minutes] {
+  font-size: 100px;
+  color: #f6da74;
+}
+
+[data-seconds] {
+  font-size: 50px;
+  color: #abcd58;
+}
+
+.label {
+  display: block;
+  font-size: 20px;
+  color: #212121;
+}
+
+.timer-container {
+  text-align: center;
+  font-family: 'Covered By Your Grace', cursive;
+
+}
+
 
 img {
   display: block;
