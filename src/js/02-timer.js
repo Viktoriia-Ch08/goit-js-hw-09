@@ -38,6 +38,7 @@ refs.startBtn.addEventListener('click', onClick);
 
 function onClick() {
   timerInterval = setInterval(() => {
+    refs.startBtn.disabled = true;
     const now = new Date().getTime();
     const distance = chosenDate - now;
     const timeToTheEnd = convertMs(distance);
@@ -46,8 +47,6 @@ function onClick() {
     refs.hoursEl.textContent = addLeadingZero(timeToTheEnd.hours);
     refs.minutesEl.textContent = addLeadingZero(timeToTheEnd.minutes);
     refs.secondsEl.textContent = addLeadingZero(timeToTheEnd.seconds);
-
-    colorsForTime();
 
     if (distance <= 0) {
       clearInterval(timerInterval);
