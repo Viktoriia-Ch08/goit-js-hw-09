@@ -20,14 +20,14 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    chosenDate = selectedDates[0];
+  onClose([selectedDates]) {
+    chosenDate = selectedDates;
     const dateDifference = chosenDate - options.defaultDate;
     if (dateDifference < 0) {
       Notify.failure('Please choose a date in the future');
       refs.startBtn.disabled = true;
     }
-    if (dateDifference > 0) refs.startBtn.disabled = false;
+    refs.startBtn.disabled = false;
   },
 };
 
@@ -39,21 +39,15 @@ refs.startBtn.addEventListener('click', onClick);
 function onClick() {
   timerInterval = setInterval(() => {
     refs.startBtn.disabled = true;
-    const now = new Date().getTime();
+    const now = Date.now();
     const distance = chosenDate - now;
     const timeToTheEnd = convertMs(distance);
 
-    refs.daysEl.textContent = addLeadingZero(timeToTheEnd.days);
-    refs.hoursEl.textContent = addLeadingZero(timeToTheEnd.hours);
-    refs.minutesEl.textContent = addLeadingZero(timeToTheEnd.minutes);
-    refs.secondsEl.textContent = addLeadingZero(timeToTheEnd.seconds);
+    setTextContent(timeToTheEnd);
 
     if (distance <= 0) {
       clearInterval(timerInterval);
-      refs.daysEl.textContent = '00';
-      refs.hoursEl.textContent = '00';
-      refs.minutesEl.textContent = '00';
-      refs.secondsEl.textContent = '00';
+      setTextContent({});
     }
   }, 1000);
 }
@@ -69,6 +63,13 @@ function convertMs(ms) {
   const minutes = Math.floor(((ms % day) % hour) / minute);
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   return { days, hours, minutes, seconds };
+}
+
+function setTextContent({ days = 0, hours = 0, minutes = 0, seconds = 0 }) {
+  refs.daysEl.textContent = addLeadingZero(days);
+  refs.hoursEl.textContent = addLeadingZero(hours);
+  refs.minutesEl.textContent = addLeadingZero(minutes);
+  refs.secondsEl.textContent = addLeadingZero(seconds);
 }
 
 function addLeadingZero(value) {
